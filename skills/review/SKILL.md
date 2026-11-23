@@ -2,11 +2,25 @@
 name: review
 description: Audit the codebase against the plan. Finds scope creep, missing Must features, tasks marked done without evidence, drift from ARCHITECTURE.md and basic hygiene problems, with file paths as evidence. Read-only. Use before a release or after finishing a phase, or runs /diazero:review. Audita o código contra o plano.
 allowed-tools: Read Grep Glob Bash(git log *) Bash(git status *) Bash(git ls-files *)
+argument-hint: [--focus scope|musts|false-done|drift|hygiene|docs] [--severity high|medium|low] [--since REF] [--strict]
 ---
 
 # Dia Zero: review
 
 Check what was built against what was planned. Read only; change nothing.
+
+Arguments given with the command, if any: $ARGUMENTS
+
+## Options
+
+Flags may appear in `$ARGUMENTS` before or after the free text. Unknown flags: say so and ignore them. A flag always beats the default and the interview.
+
+| Flag | Effect |
+|---|---|
+| `--focus AREA` | Run only that check: `scope`, `musts`, `false-done`, `drift`, `hygiene` or `docs`. Repeatable. |
+| `--severity LEVEL` | Show findings at or above that level. |
+| `--since REF` | Audit only files changed after REF. |
+| `--strict` | End with PASS or FAIL: FAIL when any high finding exists. |
 
 ## Language
 
