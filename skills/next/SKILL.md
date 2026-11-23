@@ -1,7 +1,7 @@
 ---
 name: next
 description: Do the next task from TASKS.md. Picks the first unchecked task whose dependencies are done, implements it in small steps, runs the project's checks, verifies its "done when", and marks it done. Use when the user wants to build the next piece of the plan, or runs /diazero:next. Executa a próxima tarefa do plano.
-argument-hint: [task id, e.g. T2.1]
+argument-hint: [task id] [--phase N] [--count N] [--dry-run] [--tdd] [--commit] [--no-checks]
 disable-model-invocation: true
 ---
 
@@ -10,6 +10,19 @@ disable-model-invocation: true
 Build one task from the plan, properly, then stop. The plan is the contract: do what the task says, nothing more.
 
 Task requested with the command, if any: $ARGUMENTS
+
+## Options
+
+Flags may appear in `$ARGUMENTS` before or after the free text. Unknown flags: say so and ignore them. A flag always beats the default and the interview.
+
+| Flag | Effect |
+|---|---|
+| `--phase N` | Work through the unchecked tasks of phase N, one at a time, stopping at the first failure or open decision. |
+| `--count N` | Do up to N tasks in a row, same stop rules. |
+| `--dry-run` | Do steps 1 to 3 only: pick the task and restate it, change nothing. |
+| `--tdd` | Write the failing test from the "done when" first, then the code. |
+| `--commit` | After a task passes its checks, make one commit per task with the task ID in the message. |
+| `--no-checks` | Skip the test, lint and build commands. Say that the result is unchecked. |
 
 ## Language
 
