@@ -28,13 +28,15 @@ Quem pede "faz um app de X" para uma IA recebe código sem plano: escopo que cre
 
 | Comando | O que faz |
 |---|---|
-| `/diazero:new [ideia]` | Entrevista (rápida ou completa), lê o repositório se já existir código e gera `PROJECT.md`, `ARCHITECTURE.md`, `TASKS.md` e `CLAUDE.md` |
+| `/diazero:new [ideia]` | Entrevista (rápida ou completa), lê o repositório se já existir código e gera `PROJECT.md`, `ARCHITECTURE.md`, `TASKS.md` e `CLAUDE.md`. Flags: `--quick`, `--full`, `--lang`, `--level`, `--type`, `--team`, `--deadline`, `--budget`, `--on-conflict`, `--dry-run` |
 | `/diazero:stack [o que construir]` | Parte de um catálogo com 28 tipos de projeto (site, loja, SaaS, API, mobile, CLI, bot, dados, IA e mais), compara 2 ou 3 stacks reais, recomenda uma e registra a decisão |
-| `/diazero:next [T2.1]` | Executa a próxima tarefa do plano, roda os testes, confere o "pronto quando" e marca como feita |
-| `/diazero:status` | Progresso real por fase, próximas tarefas, bloqueios e divergências entre código e plano. Só leitura |
-| `/diazero:review` | Auditoria do código contra o plano: escopo extra, funcionalidades faltando, tarefas "feitas" sem evidência. Só leitura |
-| `/diazero:refine [mudança]` | Mostra o impacto de uma mudança de escopo e atualiza os quatro arquivos com coerência |
-| `/diazero:readme [pt-BR\|en]` | Gera o README do seu projeto a partir do plano e do código |
+| `/diazero:next [T2.1]` | Executa a próxima tarefa do plano, roda os testes, confere o "pronto quando" e marca como feita. Flags: `--phase`, `--count`, `--dry-run`, `--tdd`, `--commit`, `--no-checks` |
+| `/diazero:status` | Progresso real por fase, próximas tarefas, bloqueios e divergências entre código e plano. Só leitura. Flags: `--brief`, `--phase`, `--risks`, `--since` |
+| `/diazero:review` | Auditoria do código contra o plano: escopo extra, funcionalidades faltando, tarefas "feitas" sem evidência. Só leitura. Flags: `--focus`, `--severity`, `--since`, `--strict` |
+| `/diazero:refine [mudança]` | Mostra o impacto de uma mudança de escopo e atualiza os quatro arquivos com coerência. Flags: `--add`, `--cut`, `--stack`, `--deadline`, `--dry-run` |
+| `/diazero:readme [pt-BR\|en]` | Gera o README do seu projeto a partir do plano e do código. Flags: `--lang`, `--bilingual`, `--short`, `--badges`, `--license` |
+| `/diazero:export` | Exporta as tarefas para issues do GitHub, CSV ou checklist em Markdown. Flags: `--to`, `--phase`, `--out`, `--dry-run` |
+| `/diazero:doctor` | Confere se os quatro arquivos do plano estão bem formados e coerentes. Só leitura. Flags: `--fix-list`, `--strict` |
 
 Também há o subagente `diazero:scope-guardian`, um auditor somente leitura usado pelo `review` e disponível para uso direto.
 
@@ -119,7 +121,7 @@ Depois, em uma pasta de projeto, dentro do Claude Code:
 
 ### Status
 
-Versão 0.3, em evolução. Veja o [CHANGELOG](CHANGELOG.md). Feedback e PRs são bem-vindos (veja [CONTRIBUTING](CONTRIBUTING.md)), em especial novos playbooks por tipo de projeto e perguntas melhores.
+Versão 0.4, em evolução. Veja o [CHANGELOG](CHANGELOG.md). Feedback e PRs são bem-vindos (veja [CONTRIBUTING](CONTRIBUTING.md)), em especial novos playbooks por tipo de projeto e perguntas melhores.
 
 ---
 
@@ -133,13 +135,15 @@ Asking an AI to "build an app for X" produces code without a plan: scope that gr
 
 | Command | What it does |
 |---|---|
-| `/diazero:new [idea]` | Interview (quick or full), reads the repo if code exists, and writes `PROJECT.md`, `ARCHITECTURE.md`, `TASKS.md` and `CLAUDE.md` |
+| `/diazero:new [idea]` | Interview (quick or full), reads the repo if code exists, and writes `PROJECT.md`, `ARCHITECTURE.md`, `TASKS.md` and `CLAUDE.md`. Flags: `--quick`, `--full`, `--lang`, `--level`, `--type`, `--team`, `--deadline`, `--budget`, `--on-conflict`, `--dry-run` |
 | `/diazero:stack [what to build]` | Starts from a catalog of 28 project types (site, store, SaaS, API, mobile, CLI, bot, data, AI and more), compares 2 or 3 realistic stacks, recommends one and records the decision |
-| `/diazero:next [T2.1]` | Builds the next task in the plan, runs the checks, verifies its "done when" and marks it done |
-| `/diazero:status` | Real progress per phase, next tasks, blockers, and drift between code and plan. Read-only |
-| `/diazero:review` | Audits the code against the plan: scope creep, missing features, tasks marked done without evidence. Read-only |
-| `/diazero:refine [change]` | Shows the impact of a scope change and updates all four files consistently |
-| `/diazero:readme [pt-BR\|en]` | Generates your project's README from the plan and the code |
+| `/diazero:next [T2.1]` | Builds the next task in the plan, runs the checks, verifies its "done when" and marks it done. Flags: `--phase`, `--count`, `--dry-run`, `--tdd`, `--commit`, `--no-checks` |
+| `/diazero:status` | Real progress per phase, next tasks, blockers, and drift between code and plan. Read-only. Flags: `--brief`, `--phase`, `--risks`, `--since` |
+| `/diazero:review` | Audits the code against the plan: scope creep, missing features, tasks marked done without evidence. Read-only. Flags: `--focus`, `--severity`, `--since`, `--strict` |
+| `/diazero:refine [change]` | Shows the impact of a scope change and updates all four files consistently. Flags: `--add`, `--cut`, `--stack`, `--deadline`, `--dry-run` |
+| `/diazero:readme [pt-BR\|en]` | Generates your project's README from the plan and the code. Flags: `--lang`, `--bilingual`, `--short`, `--badges`, `--license` |
+| `/diazero:export` | Exports the tasks to GitHub issues, CSV or a Markdown checklist. Flags: `--to`, `--phase`, `--out`, `--dry-run` |
+| `/diazero:doctor` | Checks that the four plan files are well formed and consistent. Read-only. Flags: `--fix-list`, `--strict` |
 
 It also ships the `diazero:scope-guardian` subagent, a read-only auditor used by `review` and available directly.
 
@@ -224,7 +228,7 @@ Then, in a project folder, inside Claude Code:
 
 ### Status
 
-Version 0.3, still evolving. See the [CHANGELOG](CHANGELOG.md). Feedback and PRs are welcome (see [CONTRIBUTING](CONTRIBUTING.md)), especially new playbooks by project type and better questions.
+Version 0.4, still evolving. See the [CHANGELOG](CHANGELOG.md). Feedback and PRs are welcome (see [CONTRIBUTING](CONTRIBUTING.md)), especially new playbooks by project type and better questions.
 
 ---
 
@@ -246,6 +250,8 @@ diazero/
     ├── next/       SKILL.md
     ├── status/     SKILL.md
     ├── review/     SKILL.md
+    ├── export/     SKILL.md
+    ├── doctor/     SKILL.md
     └── readme/     SKILL.md
 ```
 
