@@ -1,7 +1,7 @@
 ---
 name: stack
 description: Choose a technology stack for a project. Compares 2 or 3 realistic options against the user's skills, time to first release, cost, hosting and maintenance, recommends one, and records the decision. Use when the user is unsure which languages, frameworks or hosting to use, or runs /diazero:stack. Compara stacks e recomenda uma.
-argument-hint: [what you are building]
+argument-hint: [what you are building] [--options 2|3] [--budget free|low|any] [--level beginner|intermediate|pro] [--host NAME] [--compare A,B] [--record]
 ---
 
 # Dia Zero: stack
@@ -9,6 +9,19 @@ argument-hint: [what you are building]
 Help the user pick a stack they can actually finish the project with. The best stack is usually the one they already know, unless a hard requirement says otherwise.
 
 What is being built, as given with the command, if anything: $ARGUMENTS
+
+## Options
+
+Flags may appear in `$ARGUMENTS` before or after the free text. Unknown flags: say so and ignore them. A flag always beats the default and the interview.
+
+| Flag | Effect |
+|---|---|
+| `--options 2\|3` | Number of stacks to compare. |
+| `--budget free\|low\|any` | Drop options whose hosting or services do not fit. |
+| `--level LEVEL` | Weight familiarity and learning curve. |
+| `--host NAME` | Fixed hosting target; options must run there. |
+| `--compare A,B` | Compare exactly these stacks instead of picking from the catalog. |
+| `--record` | Write the decision to ARCHITECTURE.md after the recommendation, without the extra question. |
 
 ## Language
 
