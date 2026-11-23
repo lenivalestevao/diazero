@@ -1,7 +1,7 @@
 ---
 name: refine
 description: Revise the plan when scope, stack or deadline changes. Checks PROJECT.md, ARCHITECTURE.md, TASKS.md and CLAUDE.md for consistency, shows the impact of the change, and updates them. Use when the user wants to add, cut or re-plan something, or runs /diazero:refine. Revisa e atualiza o plano.
-argument-hint: [what changed]
+argument-hint: [what changed] [--add TEXT] [--cut TEXT] [--stack TEXT] [--deadline TEXT] [--dry-run]
 ---
 
 # Dia Zero: refine
@@ -9,6 +9,20 @@ argument-hint: [what changed]
 Keep the four plan files consistent with each other and with reality. Change as little as possible, and show the impact before changing anything.
 
 What changed, as given with the command, if anything: $ARGUMENTS
+
+## Options
+
+Flags may appear in `$ARGUMENTS` before or after the free text. Unknown flags: say so and ignore them. A flag always beats the default and the interview.
+
+| Flag | Effect |
+|---|---|
+| `--add TEXT` | A feature to add. |
+| `--cut TEXT` | A feature or task to remove or move to Won't. |
+| `--stack TEXT` | A stack change. |
+| `--deadline TEXT` | A new deadline. |
+| `--dry-run` | Show the impact and the proposed edits (steps 1 to 5), change nothing. |
+
+Without a flag, treat the free text as the change, as before.
 
 ## Language
 
