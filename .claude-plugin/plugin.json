@@ -1,8 +1,8 @@
 {
   "name": "diazero",
   "displayName": "Dia Zero",
-  "version": "0.3.0",
-  "description": "From idea to a build-ready plan, and through the build: interview, stack choice, task plan, next-task runner, status, review and README. pt-BR and English.",
+  "version": "0.4.0",
+  "description": "From idea to a build-ready plan, and through the build: interview, stack choice, task plan, next-task runner, status, review, export and README. pt-BR and English.",
   "author": {
     "name": "Leni Junior",
     "url": "https://github.com/lenivalestevao"
