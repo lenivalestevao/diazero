@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.4.0
+- Every command now takes flags (for example `/diazero:new --quick --lang en --level beginner`, `/diazero:next --phase 1 --tdd --commit`, `/diazero:review --focus hygiene --strict`). Each SKILL.md has an Options table.
+- Added `/diazero:export` (tasks to GitHub issues, CSV or a Markdown checklist).
+- Added `/diazero:doctor` (checks that the plan files are well formed and consistent).
+
 ## 0.3.0
 - Added `examples/agendafacil/`: a full, unabridged set of the four generated files.
 - README: added a sample session and a "why not just ask Claude" comparison, in both languages.
