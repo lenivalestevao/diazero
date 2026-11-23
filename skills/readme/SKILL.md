@@ -1,14 +1,26 @@
 ---
 name: readme
 description: Generate a README.md for the user's project from its plan files and code. Covers what it is, features, stack, how to run it, roadmap and license. Use when the user wants a README or a public project page, or runs /diazero:readme. Gera o README do projeto.
-argument-hint: [pt-BR or en]
+argument-hint: [--lang pt|en] [--bilingual] [--short] [--badges] [--license NAME]
 ---
 
 # Dia Zero: readme
 
 Write the README that a stranger needs to understand, run and trust the project. It should be accurate to the code, not to the dream.
 
-Language requested with the command, if any: $ARGUMENTS
+Arguments given with the command, if any: $ARGUMENTS
+
+## Options
+
+Flags may appear in `$ARGUMENTS` before or after the free text. Unknown flags: say so and ignore them. A flag always beats the default.
+
+| Flag | Effect |
+|---|---|
+| `--lang pt\|en` | Language of the README. A bare `pt-BR` or `en` still works. |
+| `--bilingual` | Both languages in one file, pt-BR first. |
+| `--short` | Name, description, getting started and license only. |
+| `--badges` | Add badges, only those that point at things that exist (license file, CI workflow). |
+| `--license NAME` | Use this license instead of asking. |
 
 ## Steps
 
@@ -25,7 +37,7 @@ Language requested with the command, if any: $ARGUMENTS
    - roadmap, built from unchecked tasks and Could items;
    - contributing, in two lines;
    - license.
-5. **Leave out** badges, screenshots and claims you cannot back. Add a short "Screenshots" placeholder note only if the user wants one.
+5. **Leave out** screenshots and claims you cannot back, and badges unless `--badges` is given. Add a short "Screenshots" placeholder note only if the user wants one.
 6. **License.** Ask which license to use if the project has none. Do not choose for the user.
 7. **If README.md exists,** show a short summary of the changes and ask before overwriting.
 
