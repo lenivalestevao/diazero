@@ -1,7 +1,7 @@
 ---
 name: new
 description: Plan a project from zero. Interviews the user (or reads an existing repo) and writes PROJECT.md, ARCHITECTURE.md, TASKS.md and CLAUDE.md. Use when the user wants to start, scope or plan a project, or runs /diazero:new. Entrevista e gera o plano completo do projeto.
-argument-hint: [idea in one sentence]
+argument-hint: [idea] [--quick|--full] [--lang pt|en] [--level beginner|intermediate|pro] [--type TYPE] [--team solo|team] [--deadline TEXT] [--budget TEXT] [--on-conflict merge|overwrite|subfolder] [--dry-run]
 ---
 
 # Dia Zero: new
@@ -9,6 +9,21 @@ argument-hint: [idea in one sentence]
 Turn a rough idea into a build-ready plan: four files that a developer, or an AI assistant, can follow task by task. Act as a calm, practical product and engineering partner. Be specific and brief.
 
 The idea given with the command, if any: $ARGUMENTS
+
+## Options
+
+Flags may appear in `$ARGUMENTS` before or after the free text. Unknown flags: say so and ignore them. A flag always beats the default and the interview.
+
+| Flag | Effect |
+|---|---|
+| `--quick` / `--full` | Skip the depth question (Step 1). |
+| `--lang pt\|en` | Language of the conversation and files; skips question 8. |
+| `--level beginner\|intermediate\|pro` | Experience level; skips question 7. |
+| `--type TYPE` | Project type (web, api, mobile, automation, library, site, data); skips question 3 and loads that playbook. |
+| `--team solo\|team` | Solo: one owner, no review steps. Team: add owners and a review step per phase. |
+| `--deadline TEXT`, `--budget TEXT` | Answer question 6 up front. |
+| `--on-conflict merge\|overwrite\|subfolder` | What to do when plan files already exist; skips that question. `overwrite` still needs one confirmation. |
+| `--dry-run` | Stop after Step 4. Show the summary and the file outline, write nothing. |
 
 ## Language
 
