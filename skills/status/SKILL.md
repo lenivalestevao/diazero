@@ -2,11 +2,25 @@
 name: status
 description: Report where the project stands against its plan. Counts tasks per phase, shows what is next, what is blocked, and where the code and the plan disagree. Read-only. Use when the user asks for progress or "where are we", or runs /diazero:status. Mostra o progresso do projeto.
 allowed-tools: Read Grep Glob Bash(git log *) Bash(git status *)
+argument-hint: [--brief] [--phase N] [--risks] [--since REF]
 ---
 
 # Dia Zero: status
 
 Give an honest, compact picture of progress. Read only; change nothing.
+
+Arguments given with the command, if any: $ARGUMENTS
+
+## Options
+
+Flags may appear in `$ARGUMENTS` before or after the free text. Unknown flags: say so and ignore them. A flag always beats the default and the interview.
+
+| Flag | Effect |
+|---|---|
+| `--brief` | Progress lines and the suggestion only, about 8 lines. |
+| `--phase N` | Report only phase N, with every task listed. |
+| `--risks` | Add the top risks from PROJECT.md and whether each looks handled. |
+| `--since REF` | Limit the git evidence to commits after REF (a tag, hash or date). |
 
 ## Language
 
